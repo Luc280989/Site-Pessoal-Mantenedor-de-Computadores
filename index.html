@@ -70,6 +70,40 @@
             color: var(--dark);
         }
 
+        /* Navigation */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .menu-toggle svg {
+            width: 24px;
+            height: 24px;
+            color: var(--dark);
+        }
+
         /* Hero Section */
         .hero {
             background: linear-gradient(135deg, var(--dark) 0%, #334155 100%);
@@ -457,6 +491,8 @@
             padding: 35px;
             border-radius: 12px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
         }
 
         .testimonial-stars {
@@ -475,6 +511,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            margin-top: auto;
         }
 
         .testimonial-avatar {
@@ -544,6 +581,25 @@
             font-size: 0.9rem;
         }
 
+        .footer-links {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+            text-decoration: underline;
+        }
+
         /* Responsive */
         @media (max-width: 992px) {
             .hero-content,
@@ -594,6 +650,132 @@
             .btn-whatsapp span {
                 display: none;
             }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                gap: 15px;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        /* Regions Section */
+        .regions {
+            background: var(--light);
+        }
+
+        .regions-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: stretch;
+        }
+
+        .regions-map {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            height: 400px;
+        }
+
+        .regions-map iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .regions-info {
+            display: flex;
+            flex-direction: column;
+            height: 400px;
+        }
+
+        .regions-info h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+            flex-shrink: 0;
+        }
+
+        .regions-info p {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            flex-shrink: 0;
+        }
+
+        .regions-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            align-content: space-between;
+            flex: 1;
+        }
+
+        .region-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: var(--white);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--dark);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .region-item svg {
+            width: 16px;
+            height: 16px;
+            color: var(--success);
+            flex-shrink: 0;
+        }
+
+        .region-highlight {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            font-weight: 600;
+            justify-content: center;
+        }
+
+        .region-highlight svg {
+            color: var(--white);
+        }
+
+        @media (max-width: 768px) {
+            .regions-content {
+                grid-template-columns: 1fr;
+            }
+
+            .regions-map {
+                height: 300px;
+                order: -1;
+            }
+
+            .regions-info {
+                height: auto;
+            }
+
+            .regions-list {
+                grid-template-columns: 1fr;
+                align-content: start;
+            }
         }
     </style>
 </head>
@@ -601,18 +783,32 @@
     <!-- Header -->
     <header>
         <div class="container">
-            <div class="logo">PC<span>Tech</span></div>
+            <div class="logo">LC<span>Tech</span></div>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="#problemas">Problemas</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#beneficios">Benefícios</a></li>
+                    <li><a href="#diferenciais">Diferenciais</a></li>
+                    <li><a href="#processo">Processo</a></li>
+                    <li><a href="#depoimentos">Depoimentos</a></li>
+                    <li><a href="#regioes">Regiões</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Menu">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section id="hero" class="hero">
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
                     <h1>Seu computador está lento, travando ou não liga?</h1>
                     <p>Eu resolvo seu problema de forma rápida e sem complicação. Especialista em manutenção de desktop e notebook com atendimento transparente e direto.</p>
-                    <a href="https://wa.me/55SEUNUMERO?text=Olá!%20Meu%20computador%20está%20com%20problema%20e%20gostaria%20de%20ajuda" class="btn btn-primary" target="_blank">
+                    <a href="https://wa.me/5511996077963?text=Olá!%20Meu%20computador%20está%20com%20problema%20e%20gostaria%20de%20ajuda" class="btn btn-primary" target="_blank">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.13 1.56 5.909L0 24l6.335-1.652a11.88 11.88 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.35-8.413"/></svg>
                         Fale comigo no WhatsApp
                     </a>
@@ -625,7 +821,7 @@
     </section>
 
     <!-- Problems Section -->
-    <section class="problems">
+    <section id="problemas" class="problems">
         <div class="container">
             <h2 class="section-title">Problemas comuns que resolvo</h2>
             <p class="section-subtitle">Se você está enfrentando algum desses problemas, posso ajudar você</p>
@@ -689,7 +885,7 @@
     </section>
 
     <!-- Services Section -->
-    <section class="services">
+    <section id="servicos" class="services">
         <div class="container">
             <h2 class="section-title">Serviços que ofereço</h2>
             <p class="section-subtitle">Soluções completas para desktop e notebook</p>
@@ -755,7 +951,7 @@
     </section>
 
     <!-- Benefits Section -->
-    <section class="benefits">
+    <section id="beneficios" class="benefits">
         <div class="container">
             <h2 class="section-title">Benefícios que você terá</h2>
             <p class="section-subtitle">Seu computador funcionando como novo</p>
@@ -793,7 +989,7 @@
     </section>
 
     <!-- Differentials Section -->
-    <section class="differentials">
+    <section id="diferenciais" class="differentials">
         <div class="container">
             <h2 class="section-title">Por que me escolher?</h2>
             <p class="section-subtitle">Diferenciais que garantem seu melhor atendimento</p>
@@ -844,7 +1040,7 @@
     </section>
 
     <!-- Process Section -->
-    <section class="process">
+    <section id="processo" class="process">
         <div class="container">
             <h2 class="section-title">Como funciona o atendimento</h2>
             <p class="section-subtitle">Processo simples e eficiente</p>
@@ -874,7 +1070,7 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section class="testimonials">
+    <section id="depoimentos" class="testimonials">
         <div class="container">
             <h2 class="section-title">O que dizem meus clientes</h2>
             <p class="section-subtitle">Depoimentos reais de quem já resolveu seu problema</p>
@@ -886,18 +1082,18 @@
                         <div class="testimonial-avatar">RS</div>
                         <div class="testimonial-author-info">
                             <h4>Rodrigo Silva</h4>
-                            <span>Notebook Dell</span>
+                            <span>Notebook</span>
                         </div>
                     </div>
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-stars">★★★★★</div>
-                    <p>"Fiz upgrade de SSD e memória. O computador ficou outro! Superou minhas expectativas."</p>
+                    <p>"Meu notebook estava travado. Foi feita limpeza, formatação, backup, troca da pasta térmica e de brinde ele instalou o Mario haha. Recomendo demais o serviço desse profissional."</p>
                     <div class="testimonial-author">
-                        <div class="testimonial-avatar">AM</div>
+                        <div class="testimonial-avatar">CN</div>
                         <div class="testimonial-author-info">
-                            <h4>Ana Maria</h4>
-                            <span>Desktop Gamer</span>
+                            <h4>Camila Navarro</h4>
+                            <span>Notebook</span>
                         </div>
                     </div>
                 </div>
@@ -908,9 +1104,72 @@
                         <div class="testimonial-avatar">JC</div>
                         <div class="testimonial-author-info">
                             <h4>João Carlos</h4>
-                            <span>PC Home Office</span>
+                            <span>PC Desktop</span>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Regions Section -->
+    <section id="regioes" class="regions">
+        <div class="container">
+            <h2 class="section-title">Regiões Atendidas</h2>
+            <p class="section-subtitle">Atendimento presencial em toda São Paulo capital e regiões próximas</p>
+            <div class="regions-content">
+                <div class="regions-info">
+                    <h3>Bairros com atendimento prioritário</h3>
+                    <p>Atendo presencialmente nas seguintes regiões da zona sul de São Paulo:</p>
+                    <div class="regions-list">
+                        <div class="region-item">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Jardim Rubilene
+                        </div>
+                        <div class="region-item">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Chácara São João
+                        </div>
+                        <div class="region-item">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Balneário São Francisco
+                        </div>
+                        <div class="region-item">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Parque Primavera
+                        </div>
+                        <div class="region-item">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Vila Guacuri
+                        </div>
+                        <div class="region-item">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Jardim Guacuri
+                        </div>
+                        <div class="region-item">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Jardim Dinar
+                        </div>
+                        <div class="region-item">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Jardim Luso
+                        </div>
+                        <div class="region-item">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            C.H. Parque Valo Velho II
+                        </div>
+                        <div class="region-item">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Praia do Leblon
+                        </div>
+                        <div class="region-item region-highlight">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            E toda a São Paulo Capital
+                        </div>
+                    </div>
+                </div>
+                <div class="regions-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3655.1!2d-46.7333!3d-23.68!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce6c7e5c7e8a9%3A0x1f8d6e8b9c2d3e4f!2s04474320!5e0!3m2!1spt-BR!2sbr!4v1609459200000!5m2!1spt-BR!2sbr&q=04474320" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa de atendimento - CEP 04474320, Jardim Guacuri, São Paulo"></iframe>
                 </div>
             </div>
         </div>
@@ -921,7 +1180,7 @@
         <div class="container">
             <h2>Deixe seu computador funcionando como novo</h2>
             <p>Não perca mais tempo com um computador lento ou problemático. Entre em contato agora e resolva isso hoje mesmo!</p>
-            <a href="https://wa.me/55SEUNUMERO?text=Olá!%20Meu%20computador%20está%20com%20problema%20e%20gostaria%20de%20ajuda" class="btn btn-primary" target="_blank">
+            <a href="https://wa.me/5511996077963?text=Olá!%20Meu%20computador%20está%20com%20problema%20e%20gostaria%20de%20ajuda" class="btn btn-primary" target="_blank">
                 <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.13 1.56 5.909L0 24l6.335-1.652a11.88 11.88 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.35-8.413"/></svg>
                 Chamar no WhatsApp
             </a>
@@ -931,12 +1190,16 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2026 PCTech - Manutenção de Computadores. Todos os direitos reservados.</p>
+            <p>&copy; 2026 LCTech - Manutenção de Computadores. Todos os direitos reservados.</p>
+            <div class="footer-links">
+                <p>Precisa de ajudar com a sua rede doméstica? <a href="#" target="_blank">Clique aqui!</a></p>
+                <p>Gostou desse site? <a href="#" target="_blank">Veja quem fez!</a></p>
+            </div>
         </div>
     </footer>
 
     <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/55SEUNUMERO?text=Olá!%20Meu%20computador%20está%20com%20problema%20e%20gostaria%20de%20ajuda" class="btn-whatsapp" target="_blank">
+    <a href="https://wa.me/5511996077963?text=Olá!%20Meu%20computador%20está%20com%20problema%20e%20gostaria%20de%20ajuda" class="btn-whatsapp" target="_blank">
         <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.13 1.56 5.909L0 24l6.335-1.652a11.88 11.88 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.35-8.413"/></svg>
         <span>Fale comigo</span>
     </a>
@@ -979,6 +1242,23 @@
             el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
             observer.observe(el);
         });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+
+        if (menuToggle && navMenu) {
+            menuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+
+            // Close menu when clicking on a link
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                });
+            });
+        }
     </script>
 </body>
 </html>
